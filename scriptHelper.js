@@ -35,25 +35,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let status = document.getElementById("launchStatus");
     let list = document.getElementById("faultyItems"); 
 
+    pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch.`;
+    copilotStatus.innerHTML = `Copilot ${copilot.value} is ready for launch.`;
+
     // validating that pilot and copilot are strings; cargo and fuel are numbers
-
-
-    // pilot status
-    if (validateInput(pilot.value) === "Not a Number") {
-        list.style.visibility = "visible";
-        pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch.`;
-    } else if (validateInput(pilot.value) === "Is a Number") {
-        alert("Pilot name cannot contain a number. Please try again.");
-        return;
-    }
-
-    // copilot status
-    if (validateInput(copilot.value) === "Not a Number") {
-        list.style.visibility = "visible";
-        copilotStatus.innerHTML = `Copilot ${copilot.value} is ready for launch.`;
-    } else if (validateInput(copilot.value) === "Is a Number") {
-        alert("Copilot name cannot contain a number. Please try again.");
-        return;
+    if (pilot.value === "" || copilot.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
+        alert("All fields are required!");
+    } else if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number") {
+        alert("Name cannot contain number. Please try again.");
+    } else if (validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoLevel.value) === "Not a Number") {
+        alert("Must contain numbers only. Please try again.");
     }
 
     // checks fuel level and updates status list
@@ -62,8 +53,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         fuelStatus.innerHTML = "Fuel level too low for launch.";
         status.innerHTML = "Shuttle not ready for launch.";
         status.style.color = "red";
-    } else if (validateInput(fuelLevel.value) === "Not a Number") {
-        alert("Invalid fuel level. Please try again.");
     } else {
         list.style.visibility = "visible";
     }
@@ -74,8 +63,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoStatus.innerHTML = "Cargo mass too high for launch.";
         status.innerHTML = "Shuttle not ready for launch.";
         status.style.color = "red";
-    } else if (validateInput(cargoLevel.value) === "Not a Number") {
-        alert("Invalid cargo mass. Please try again.")
     } else {
         list.style.visibility = "visible";
     }

@@ -7,18 +7,14 @@ window.addEventListener("load", function() {
     let copilot = document.querySelector("input[name=copilotName]");
     let fuelLevel = document.querySelector("input[name=fuelLevel]");
     let cargoMass = document.querySelector("input[name=cargoMass]");
-    let status = document.getElementById("launchStatus");
+    // let status = document.getElementById("launchStatus");
 
 
     //checks if any fields in form are empty and prompts user to fill all fields
     form.addEventListener("submit", function(event) {
+   
+        formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
         event.preventDefault();
-        
-        if (pilot.value === "" || copilot.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
-            alert("All fields are required!");
-        } else {
-            formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
-        }
     });
 
    let listedPlanets;
