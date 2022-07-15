@@ -2,19 +2,17 @@
 
 window.addEventListener("load", function() {
     const form = document.querySelector("form");
+    
+    form.addEventListener("submit", function(event) {
     let list = document.getElementById("faultyItems");
-    let pilot = document.querySelector("input[name=pilotName");
+    let pilot = document.querySelector("input[name=pilotName]");
     let copilot = document.querySelector("input[name=copilotName]");
     let fuelLevel = document.querySelector("input[name=fuelLevel]");
     let cargoMass = document.querySelector("input[name=cargoMass]");
-    // let status = document.getElementById("launchStatus");
+    // let status = document.getElementById("launchStatus");  
+    event.preventDefault();
+    formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
 
-
-    //checks if any fields in form are empty and prompts user to fill all fields
-    form.addEventListener("submit", function(event) {
-   
-        formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
-        event.preventDefault();
     });
 
    let listedPlanets;

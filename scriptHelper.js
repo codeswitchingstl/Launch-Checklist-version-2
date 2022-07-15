@@ -33,13 +33,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let fuelStatus = document.getElementById("fuelStatus");
     let cargoStatus = document.getElementById("cargoStatus");
     let status = document.getElementById("launchStatus");
-    let list = document.getElementById("faultyItems"); 
+    // let list = document.getElementById("faultyItems"); 
 
     pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch.`;
     copilotStatus.innerHTML = `Copilot ${copilot.value} is ready for launch.`;
 
     // validating that pilot and copilot are strings; cargo and fuel are numbers
-    if (pilot.value === "" || copilot.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
+    if (pilot.value === "" || copilot.value === "" || fuelLevel.value === "" || cargoLevel.value === "") {
         alert("All fields are required!");
     } else if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number") {
         alert("Name cannot contain number. Please try again.");
@@ -54,7 +54,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         status.innerHTML = "Shuttle not ready for launch.";
         status.style.color = "red";
     } else {
-        list.style.visibility = "visible";
+        // list.style.visibility = "visible";
+        fuelStatus.innerHTML = "Fuel level ready for launch.";
     }
 
     // checks cargo mass level and updates list
@@ -63,12 +64,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoStatus.innerHTML = "Cargo mass too high for launch.";
         status.innerHTML = "Shuttle not ready for launch.";
         status.style.color = "red";
-    } else {
+    } else if (cargoLevel.value < 10000) {
         list.style.visibility = "visible";
+        cargoStatus.innerHTML = "Cargo mass ready for launch."
     }
 
     // executes if shuttle is ready for launch
-    if (fuelLevel.value >= 10000 && cargoMass.value <= 10000) {
+    if (fuelLevel.value > 10000 && cargoLevel.value < 10000) {
         list.style.visibility = "visible";
         status.innerHTML = "Shuttle is ready for launch.";
         status.style.color = "green";
