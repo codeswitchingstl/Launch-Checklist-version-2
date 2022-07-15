@@ -35,6 +35,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let status = document.getElementById("launchStatus");
     let list = document.getElementById("faultyItems"); 
 
+    // validating that pilot and copilot are strings; cargo and fuel are numbers
+
+
     // pilot status
     if (validateInput(pilot.value) === "Not a Number") {
         list.style.visibility = "visible";
@@ -66,12 +69,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
 
     // checks cargo mass level and updates list
-    if (cargoMass.value > 10000) {
+    if (cargoLevel.value > 10000) {
         list.style.visibility = "visible";
         cargoStatus.innerHTML = "Cargo mass too high for launch.";
         status.innerHTML = "Shuttle not ready for launch.";
         status.style.color = "red";
-    } else if (validateInput(cargoMass.value) === "Not a Number") {
+    } else if (validateInput(cargoLevel.value) === "Not a Number") {
         alert("Invalid cargo mass. Please try again.")
     } else {
         list.style.visibility = "visible";
