@@ -1,8 +1,8 @@
 // Write your helper functions here!
 require('isomorphic-fetch');
 
-function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   let missionTarget = document.getElementByID("missionTarget");
+function addDestinationInfo(name, diameter, star, distance, moons, imageUrl) {
+   let missionTarget = document.getElementById("missionTarget");
    missionTarget.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
@@ -14,7 +14,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="${imageUrl}">
                 `
-}
+};
 
 function validateInput(testInput) {
    if (testInput === "") {
@@ -44,7 +44,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     } else if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number") {
         alert("Name cannot contain number. Please try again.");
     } else if (validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoLevel.value) === "Not a Number") {
-        alert("Must contain numbers only. Please try again.");
+        alert("Fuel Level and Cargo Level must contain numbers only. Please try again.");
     }
 
     // checks fuel level and updates status list
